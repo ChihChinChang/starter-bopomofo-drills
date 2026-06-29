@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Mandarin Chinese — Bopomofo Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1c1a;--ink2:#4a4a45;--ink3:#888880;
+  --bg:#faf9f6;--surface:#fff;--surface2:#f2f1ec;
+  --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.15);
+  --red:#c0392b;--red-bg:#fdf2f1;--red-border:#f5c6c2;
+  --green:#2d6a4f;--green-bg:#f0f7f4;--green-border:#b7d8cb;
+  --blue:#1a4480;--blue-bg:#eef3fb;--blue-border:#bad0f0;
+  --gold:#9a6f00;--gold-bg:#fdf8ed;--gold-border:#edd89a;
+  --radius:10px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
+  --cjk:"Noto Sans TC","Microsoft JhengHei","PingFang TC","Apple LiGothic Medium",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+
+/* Bopomofo characters always use CJK font */
+.bopo,.poem-bopo,.dlg-bopo,.v-bopo,.bopo-cell .sym,.bopo-hint,
+.quiz-answer-reveal,.q-answer{
+  font-family:var(--cjk) !important;
+}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.96);backdrop-filter:blur(8px);border-bottom:.5px solid var(--border2);padding:0 1.5rem}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;overflow-x:auto}
+.nav-inner a{display:block;padding:13px 12px;font-size:13px;color:var(--ink2);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s}
+.nav-inner a:hover,.nav-inner a.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-logo{font-weight:700;font-size:15px;color:var(--ink);margin-right:10px;border-bottom:none!important}
+
+.wrap{max-width:920px;margin:0 auto;padding:0 1.25rem}
+
+.hero{background:var(--ink);color:#fff;padding:3.5rem 1.25rem 3rem;text-align:center}
+.hero-inner{max-width:700px;margin:0 auto}
+.hero-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.75rem}
+.hero h1{font-family:Georgia,serif;font-size:clamp(2rem,6vw,3rem);line-height:1.15;margin-bottom:.75rem;color:#fff}
+.hero h1 em{color:#e8a87c;font-style:normal}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto 1rem}
+.hero-bopo{font-family:var(--cjk);font-size:clamp(1.4rem,4vw,2rem);letter-spacing:.18em;color:rgba(255,255,255,.15);font-weight:300;margin-top:1rem}
+
+.notice{background:var(--gold-bg);border:.5px solid var(--gold-border);border-left:3px solid var(--gold);border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0}
+.notice h3{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.07em}
+.notice ol{padding-left:1.2rem;color:var(--ink2)}
+.notice ol li{margin-bottom:.65rem;font-size:14px;line-height:1.7}
+.notice ol li strong{color:var(--ink)}
+
+.module{padding:2.75rem 0 2rem}
+.module+.module{border-top:.5px solid var(--border)}
+.module-eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.4rem}
+.module-header h2{font-family:Georgia,serif;font-size:clamp(1.4rem,3vw,1.85rem);color:var(--ink);line-height:1.25}
+.module-header p{color:var(--ink2);font-size:14px;margin-top:.5rem}
+.unit-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin:1.75rem 0 .75rem;padding-bottom:.4rem;border-bottom:.5px solid var(--border)}
+
+.bopo-table{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:7px;margin-bottom:1.25rem}
+.bopo-cell{background:var(--surface);border:.5px solid var(--border2);border-radius:var(--radius);padding:10px 6px;text-align:center}
+.bopo-cell .sym{font-family:var(--cjk);font-size:24px;font-weight:600;display:block;color:var(--ink)}
+.bopo-cell .rom{font-size:12px;color:var(--ink3);margin-top:2px}
+.bopo-cell .desc{font-size:10px;color:var(--ink3);margin-top:1px;line-height:1.3}
+
+.combo-wrap{overflow-x:auto;margin-bottom:1.25rem}
+.combo-table{border-collapse:collapse;font-size:13px;min-width:500px}
+.combo-table th{background:var(--surface2);padding:7px 10px;text-align:center;border:.5px solid var(--border2);font-weight:600;color:var(--ink2);font-size:12px;font-family:var(--cjk)}
+.combo-table td{padding:7px 10px;text-align:center;border:.5px solid var(--border);color:var(--ink);font-family:var(--cjk)}
+.combo-table td.bopo-big{font-size:15px;font-weight:700;background:var(--red-bg);color:var(--red)}
+.combo-table tr:hover td{background:var(--surface2)}
+
+.tone-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem}
+@media(max-width:480px){.tone-grid{grid-template-columns:repeat(2,1fr)}}
+.tone-card{background:var(--surface);border:.5px solid var(--border2);border-radius:var(--radius);padding:12px 8px;text-align:center}
+.tone-card .t-mark{font-family:var(--cjk);font-size:22px;font-weight:700;color:var(--red)}
+.tone-card .t-name{font-size:12px;color:var(--ink2);margin:.3rem 0 .2rem}
+.tone-card .t-desc{font-size:11px;color:var(--ink3);line-height:1.45}
+.tone-card .t-eg{font-family:var(--cjk);font-size:13px;margin-top:.5rem;color:var(--ink);background:var(--surface2);border-radius:5px;padding:4px 6px}
+
+.poem-card{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.poem-header{background:var(--ink);color:#fff;padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem}
+.poem-header h3{font-family:Georgia,serif;font-size:17px;color:#fff}
+.poem-header span{font-size:12px;color:rgba(255,255,255,.45)}
+.poem-body{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:580px){.poem-body{grid-template-columns:1fr}}
+.poem-col{padding:1.2rem 1.5rem}
+.poem-col+.poem-col{border-left:.5px solid var(--border)}
+@media(max-width:580px){.poem-col+.poem-col{border-left:none;border-top:.5px solid var(--border)}}
+.poem-col-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:.75rem}
+.poem-bopo{font-family:var(--cjk);font-size:1rem;line-height:2.4;color:var(--ink)}
+.poem-bopo .line{display:block}
+.poem-cn{font-family:var(--cjk);font-size:15px;line-height:2;color:var(--ink2)}
+.poem-cn .line{display:block}
+.poem-en{font-size:13px;line-height:1.7;color:var(--ink3);margin-top:.75rem;font-style:italic;border-top:.5px solid var(--border);padding-top:.75rem}
+
+.dialogue-section{margin-bottom:1.5rem}
+.dialogue-grid{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:.5px solid var(--border2);border-radius:12px;overflow:hidden}
+@media(max-width:600px){.dialogue-grid{grid-template-columns:1fr}}
+.dialogue-col{padding:1.2rem 1.4rem}
+.dialogue-col+.dialogue-col{border-left:.5px solid var(--border)}
+@media(max-width:600px){.dialogue-col+.dialogue-col{border-left:none;border-top:.5px solid var(--border)}}
+.dialogue-col-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:.75rem}
+.dlg-line{margin-bottom:.7rem;padding-bottom:.7rem;border-bottom:.5px solid var(--border)}
+.dlg-line:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.dlg-num{font-size:10px;color:var(--ink3);font-weight:700;margin-bottom:2px}
+.dlg-bopo{font-family:var(--cjk);font-size:14px;color:var(--ink);line-height:1.7}
+.dlg-cn{font-family:var(--cjk);font-size:13px;color:var(--ink2)}
+.dlg-en{font-size:12px;color:var(--ink3);font-style:italic}
+
+.vocab-wrap{overflow-x:auto;margin-bottom:1.5rem}
+.vocab-table{border-collapse:collapse;width:100%;font-size:14px}
+.vocab-table th{background:var(--ink);color:#fff;padding:9px 13px;text-align:left;font-weight:500;font-size:11px;letter-spacing:.06em}
+.vocab-table td{padding:8px 13px;border-bottom:.5px solid var(--border);vertical-align:middle}
+.vocab-table tr:nth-child(even) td{background:var(--surface2)}
+.vocab-table tr:hover td{background:var(--gold-bg)}
+.v-en{color:var(--ink2)}
+.v-cn{font-family:var(--cjk);font-size:17px;font-weight:600;color:var(--ink)}
+.v-bopo{font-family:var(--cjk);font-size:14px;color:var(--red)}
+.v-py{font-size:13px;color:var(--ink3)}
+
+/* QUIZ */
+.quiz-section{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.quiz-section-header{background:var(--blue-bg);border-bottom:.5px solid var(--blue-border);padding:.8rem 1.25rem}
+.quiz-section-header h4{font-size:14px;font-weight:600;color:var(--blue)}
+.quiz-q{padding:.9rem 1.25rem;border-bottom:.5px solid var(--border)}
+.quiz-q:last-of-type{border-bottom:none}
+.quiz-q-num{font-size:10px;color:var(--ink3);font-weight:700;margin-bottom:4px}
+.quiz-q-prompt{font-size:14px;color:var(--ink);margin-bottom:.6rem;line-height:1.5}
+.quiz-input-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.quiz-input{flex:1;min-width:180px;padding:8px 12px;border-radius:7px;border:.5px solid var(--border2);font-size:14px;font-family:var(--cjk);color:var(--ink);background:var(--bg);transition:border-color .15s,background .15s;resize:vertical;min-height:42px;line-height:1.6}
+.quiz-input:focus{outline:none;border-color:var(--blue);background:#fff}
+.quiz-input.correct{border-color:var(--green);background:var(--green-bg)}
+.quiz-input.wrong{border-color:var(--red);background:var(--red-bg)}
+.quiz-input.skipped{border-color:var(--ink3);background:var(--surface2)}
+.check-btn{padding:7px 16px;border-radius:7px;border:.5px solid var(--blue-border);background:var(--blue-bg);font-size:13px;color:var(--blue);cursor:pointer;font-family:var(--sans);font-weight:500;transition:all .15s;white-space:nowrap}
+.check-btn:hover{background:var(--blue);color:#fff}
+.reveal-btn{font-size:11px;color:var(--ink3);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;font-family:var(--sans);white-space:nowrap}
+.reveal-btn:hover{color:var(--ink)}
+.quiz-feedback{font-size:12px;margin-top:.4rem;min-height:16px;line-height:1.4}
+.quiz-feedback.ok{color:var(--green)}
+.quiz-feedback.bad{color:var(--red)}
+.quiz-answer-reveal{font-family:var(--cjk);display:none;background:var(--green-bg);border:.5px solid var(--green-border);border-radius:6px;padding:6px 11px;font-size:13px;color:var(--green);margin-top:.4rem}
+.quiz-answer-reveal.show{display:block}
+
+.quiz-controls{display:flex;gap:8px;padding:.85rem 1.25rem;background:var(--surface2);border-top:.5px solid var(--border);flex-wrap:wrap;align-items:center}
+.ctrl-btn{padding:7px 16px;border-radius:7px;border:.5px solid var(--border2);background:var(--surface);font-size:13px;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s}
+.ctrl-btn:hover{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+
+/* SCOREBOARD */
+.scoreboard{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:none;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.scoreboard.visible{display:flex}
+.score-ring-wrap{position:relative;width:80px;height:80px;flex-shrink:0}
+.score-ring{transform:rotate(-90deg)}
+.score-ring .bg{fill:none;stroke:var(--border2);stroke-width:8}
+.score-ring .fg{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .6s ease,stroke .4s}
+.score-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:var(--ink);line-height:1}
+.score-center small{font-size:10px;font-weight:500;color:var(--ink3);margin-top:1px}
+.score-stats{flex:1}
+.score-stats h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.score-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:.3rem}
+.score-bar-label{font-size:12px;color:var(--ink2);width:64px;flex-shrink:0}
+.score-bar-track{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.score-bar-fill.c{background:var(--green)}
+.score-bar-fill.w{background:var(--red)}
+.score-bar-fill.s{background:var(--ink3)}
+.score-bar-num{font-size:12px;color:var(--ink3);width:20px;text-align:right}
+.score-msg{font-size:13px;color:var(--ink2);margin-top:.5rem;font-style:italic}
+
+.info-box{border:.5px solid;border-radius:var(--radius);padding:.9rem 1.2rem;margin-bottom:1rem;font-size:13px;color:var(--ink2);line-height:1.65}
+.info-box.blue{background:var(--blue-bg);border-color:var(--blue-border)}
+.info-box.red{background:var(--red-bg);border-color:var(--red-border)}
+
+.hw-box{background:var(--ink);color:#fff;border-radius:12px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.hw-box h3{font-family:Georgia,serif;font-size:17px;color:#e8a87c;margin-bottom:.85rem}
+.hw-box ol{padding-left:1.2rem}
+.hw-box li{margin-bottom:.6rem;font-size:14px;color:rgba(255,255,255,.8);line-height:1.7}
+.hw-box li strong{color:#fff}
+
+footer{text-align:center;font-size:12px;color:var(--ink3);padding:2rem 1rem;border-top:.5px solid var(--border);margin-top:2rem}
+
+/* ── Bopomofo Keyboard ── */
+#kbd-body{transition:all .2s ease}
+#kbd-body.collapsed{display:none}
+.bopo-kbd-title:hover #kbd-toggle-icon{color:var(--blue)}
+
+.bopo-kbd{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;padding:1rem 1rem .75rem;margin-bottom:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.bopo-kbd-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:.65rem;display:flex;align-items:center;justify-content:space-between}
+.bopo-kbd-title span{font-size:11px;color:var(--ink3)}
+.bopo-kbd-section{margin-bottom:.55rem}
+.bopo-kbd-label{font-size:10px;color:var(--ink3);margin-bottom:.3rem;font-weight:600;letter-spacing:.05em}
+.bopo-kbd-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:0}
+.bk{background:var(--surface2);border:.5px solid var(--border2);border-radius:6px;padding:5px 0;min-width:36px;text-align:center;font-family:var(--cjk);font-size:17px;font-weight:500;cursor:pointer;color:var(--ink);transition:all .12s;user-select:none;line-height:1.3}
+.bk:hover{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue);transform:translateY(-1px)}
+.bk:active{transform:translateY(0);background:var(--blue);color:#fff}
+.bk.tone{font-size:14px;min-width:42px;background:var(--red-bg);border-color:var(--red-border);color:var(--red);font-family:var(--sans)}
+.bk.tone:hover{background:var(--red);color:#fff}
+.bk.space-key{min-width:80px;font-size:12px;font-family:var(--sans);color:var(--ink3)}
+.bk.del-key{min-width:52px;font-size:13px;font-family:var(--sans);color:var(--ink3);background:var(--surface)}
+.bk.clr-key{min-width:52px;font-size:12px;font-family:var(--sans);color:var(--red);background:var(--red-bg);border-color:var(--red-border)}
+.kbd-target-hint{font-size:11px;color:var(--blue);background:var(--blue-bg);border-radius:5px;padding:3px 8px;display:inline-block;margin-bottom:.5rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">學中文</a>
+    <a href="#tips">Learner Tips</a>
+    <a href="#mod1">Module 1: Bopomofo</a>
+    <a href="#mod2">Module 2: Poems</a>
+    <a href="#mod3">Module 3: Dialogue</a>
+    <a href="#mod4">Module 4: Vocabulary</a>
+    <a href="#mod5">Module 5: Quiz</a>
+    <a href="#homework">Homework</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Mandarin Chinese for Beginners · 零基礎中文課程</div>
+    <h1>Learn Chinese Through <em>Bopomofo</em></h1>
+    <p class="hero-sub">A complete beginner's course built around Taiwan's phonetic system — from your first sounds to reading poetry and real conversations.</p>
+    <div class="hero-bopo">ㄅ ㄆ ㄇ ㄈ ㄉ ㄊ ㄋ ㄌ ㄍ ㄎ ㄏ</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ── Bopomofo On-Screen Keyboard ── -->
+<div id="bopo-keyboard" class="bopo-kbd" style="position:sticky;top:47px;z-index:90">
+  <div class="bopo-kbd-title" style="cursor:pointer" onclick="toggleKbd()">
+    <span>⌨️ Bopomofo Keyboard 注音鍵盤 <span id="kbd-toggle-icon">▲</span></span>
+    <span id="kbd-hint" class="kbd-target-hint">點答題欄後再點注音符號</span>
+  </div>
+  <div id="kbd-body">
+  <div class="bopo-kbd-section">
+    <div class="bopo-kbd-label">聲母 Initials</div>
+    <div class="bopo-kbd-row">
+      <span class="bk" onclick="kbdType('ㄅ')">ㄅ</span>
+      <span class="bk" onclick="kbdType('ㄆ')">ㄆ</span>
+      <span class="bk" onclick="kbdType('ㄇ')">ㄇ</span>
+      <span class="bk" onclick="kbdType('ㄈ')">ㄈ</span>
+      <span class="bk" onclick="kbdType('ㄉ')">ㄉ</span>
+      <span class="bk" onclick="kbdType('ㄊ')">ㄊ</span>
+      <span class="bk" onclick="kbdType('ㄋ')">ㄋ</span>
+      <span class="bk" onclick="kbdType('ㄌ')">ㄌ</span>
+      <span class="bk" onclick="kbdType('ㄍ')">ㄍ</span>
+      <span class="bk" onclick="kbdType('ㄎ')">ㄎ</span>
+      <span class="bk" onclick="kbdType('ㄏ')">ㄏ</span>
+      <span class="bk" onclick="kbdType('ㄐ')">ㄐ</span>
+      <span class="bk" onclick="kbdType('ㄑ')">ㄑ</span>
+      <span class="bk" onclick="kbdType('ㄒ')">ㄒ</span>
+      <span class="bk" onclick="kbdType('ㄓ')">ㄓ</span>
+      <span class="bk" onclick="kbdType('ㄔ')">ㄔ</span>
+      <span class="bk" onclick="kbdType('ㄕ')">ㄕ</span>
+      <span class="bk" onclick="kbdType('ㄖ')">ㄖ</span>
+      <span class="bk" onclick="kbdType('ㄗ')">ㄗ</span>
+      <span class="bk" onclick="kbdType('ㄘ')">ㄘ</span>
+      <span class="bk" onclick="kbdType('ㄙ')">ㄙ</span>
+    </div>
+  </div>
+  <div class="bopo-kbd-section">
+    <div class="bopo-kbd-label">韻母 Finals</div>
+    <div class="bopo-kbd-row">
+      <span class="bk" onclick="kbdType('ㄧ')">ㄧ</span>
+      <span class="bk" onclick="kbdType('ㄨ')">ㄨ</span>
+      <span class="bk" onclick="kbdType('ㄩ')">ㄩ</span>
+      <span class="bk" onclick="kbdType('ㄚ')">ㄚ</span>
+      <span class="bk" onclick="kbdType('ㄛ')">ㄛ</span>
+      <span class="bk" onclick="kbdType('ㄜ')">ㄜ</span>
+      <span class="bk" onclick="kbdType('ㄝ')">ㄝ</span>
+      <span class="bk" onclick="kbdType('ㄞ')">ㄞ</span>
+      <span class="bk" onclick="kbdType('ㄟ')">ㄟ</span>
+      <span class="bk" onclick="kbdType('ㄠ')">ㄠ</span>
+      <span class="bk" onclick="kbdType('ㄡ')">ㄡ</span>
+      <span class="bk" onclick="kbdType('ㄢ')">ㄢ</span>
+      <span class="bk" onclick="kbdType('ㄣ')">ㄣ</span>
+      <span class="bk" onclick="kbdType('ㄤ')">ㄤ</span>
+      <span class="bk" onclick="kbdType('ㄥ')">ㄥ</span>
+      <span class="bk" onclick="kbdType('ㄦ')">ㄦ</span>
+    </div>
+  </div>
+  <div class="bopo-kbd-section">
+    <div class="bopo-kbd-label">聲調 Tones &amp; Controls</div>
+    <div class="bopo-kbd-row">
+      <span class="bk tone" onclick="kbdType('ˉ')" title="1st tone">ˉ 1聲</span>
+      <span class="bk tone" onclick="kbdType('ˊ')" title="2nd tone">ˊ 2聲</span>
+      <span class="bk tone" onclick="kbdType('ˇ')" title="3rd tone">ˇ 3聲</span>
+      <span class="bk tone" onclick="kbdType('ˋ')" title="4th tone">ˋ 4聲</span>
+      <span class="bk space-key" onclick="kbdType(' ')">空白 Space</span>
+      <span class="bk del-key" onclick="kbdDel()">⌫ Del</span>
+      <span class="bk clr-key" onclick="kbdClear()">✕ Clear</span>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<section class="module" id="tips">
+  <div class="module-header">
+    <div class="module-eyebrow">Before You Begin</div>
+    <h2>Learner's Guide — How to Make This Work</h2>
+  </div>
+  <div class="notice">
+    <h3>🧠 Your Brain Is Like a Rubber Band — Highly Plastic</h3>
+    <ol>
+      <li><strong>Your brain can always stretch further.</strong> Science calls this neuroplasticity: every time you practise, your neurons form new connections. No matter your age or background, your brain can learn any language. The only thing standing between you and fluency is repetition and the refusal to give up. Mistakes are not failure — they are the mechanism of learning. Make them boldly.</li>
+      <li><strong>Imitate, repeat, make mistakes.</strong> Learning a language is a process of imitation and repeated practice. Watch native speakers' mouths carefully. Embrace every mistake — errors are a sign your brain is stretching.</li>
+      <li><strong>Build up from memory.</strong> Once your pronunciation is solid, work toward recalling material without the aid of textbooks or notes. True learning lives in your head, not on the page.</li>
+      <li><strong>Listen first, speak second.</strong> When practising listening, mouth along as you hear. Fluency matters more than accuracy at this stage — you are building instinct and training your mouth muscles. Fill your life with Chinese: podcasts, films, conversations with native speakers.</li>
+      <li><strong>Study in quality blocks.</strong> Aim for at least one hour per session. Study until you feel bored, tired, or restless, then stop. No benefit in pushing past three hours.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- MODULE 1 -->
+<section class="module" id="mod1">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 1</div>
+    <h2>The Bopomofo Sound System 注音符號</h2>
+    <p>Master these symbols and you can pronounce any Chinese word correctly.</p>
+  </div>
+
+  <div class="unit-label">Unit 1 — The 21 Initials 聲母 (Consonants)</div>
+  <div class="info-box blue">Initials are consonants that begin a syllable. Mandarin syllables either start with one of these, or begin directly with a vowel.</div>
+  <div class="bopo-table">
+    <div class="bopo-cell"><span class="sym">ㄅ</span><span class="rom">b</span><span class="desc">as in "boy"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄆ</span><span class="rom">p</span><span class="desc">as in "pin" (aspirated)</span></div>
+    <div class="bopo-cell"><span class="sym">ㄇ</span><span class="rom">m</span><span class="desc">as in "map"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄈ</span><span class="rom">f</span><span class="desc">as in "fan"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄉ</span><span class="rom">d</span><span class="desc">as in "door"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄊ</span><span class="rom">t</span><span class="desc">as in "top" (aspirated)</span></div>
+    <div class="bopo-cell"><span class="sym">ㄋ</span><span class="rom">n</span><span class="desc">as in "now"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄌ</span><span class="rom">l</span><span class="desc">as in "leg"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄍ</span><span class="rom">g</span><span class="desc">as in "go"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄎ</span><span class="rom">k</span><span class="desc">as in "key" (aspirated)</span></div>
+    <div class="bopo-cell"><span class="sym">ㄏ</span><span class="rom">h</span><span class="desc">as in "home"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄐ</span><span class="rom">j</span><span class="desc">"jee" — tongue front</span></div>
+    <div class="bopo-cell"><span class="sym">ㄑ</span><span class="rom">q</span><span class="desc">"chee" — aspirated j</span></div>
+    <div class="bopo-cell"><span class="sym">ㄒ</span><span class="rom">x</span><span class="desc">"shee" — soft</span></div>
+    <div class="bopo-cell"><span class="sym">ㄓ</span><span class="rom">zh</span><span class="desc">"jur" — tongue back</span></div>
+    <div class="bopo-cell"><span class="sym">ㄔ</span><span class="rom">ch</span><span class="desc">"chur" — aspirated zh</span></div>
+    <div class="bopo-cell"><span class="sym">ㄕ</span><span class="rom">sh</span><span class="desc">"shur" — tongue back</span></div>
+    <div class="bopo-cell"><span class="sym">ㄖ</span><span class="rom">r</span><span class="desc">"rur" — tongue back</span></div>
+    <div class="bopo-cell"><span class="sym">ㄗ</span><span class="rom">z</span><span class="desc">"dz" as in "pizza"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄘ</span><span class="rom">c</span><span class="desc">"ts" as in "cats"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄙ</span><span class="rom">s</span><span class="desc">as in "sun"</span></div>
+  </div>
+
+  <div class="unit-label">Unit 1 — The 16 Finals 韻母 (Vowels)</div>
+  <div class="bopo-table">
+    <div class="bopo-cell"><span class="sym">ㄧ</span><span class="rom">i / yi</span><span class="desc">"ee"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄨ</span><span class="rom">u / wu</span><span class="desc">"oo"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄩ</span><span class="rom">ü / yu</span><span class="desc">"ü" — round lips</span></div>
+    <div class="bopo-cell"><span class="sym">ㄚ</span><span class="rom">a</span><span class="desc">"ah"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄛ</span><span class="rom">o</span><span class="desc">"aw"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄜ</span><span class="rom">e</span><span class="desc">"uh"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄝ</span><span class="rom">ê</span><span class="desc">"eh"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄞ</span><span class="rom">ai</span><span class="desc">"eye"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄟ</span><span class="rom">ei</span><span class="desc">"ay"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄠ</span><span class="rom">ao</span><span class="desc">"ow"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄡ</span><span class="rom">ou</span><span class="desc">"oh"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄢ</span><span class="rom">an</span><span class="desc">"ahn"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄣ</span><span class="rom">en</span><span class="desc">"un"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄤ</span><span class="rom">ang</span><span class="desc">"ahng"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄥ</span><span class="rom">eng</span><span class="desc">"ung"</span></div>
+    <div class="bopo-cell"><span class="sym">ㄦ</span><span class="rom">er</span><span class="desc">"er" retroflex</span></div>
+  </div>
+
+  <div class="unit-label">Unit 2 — Initial + Final Combinations 聲韻拼合</div>
+  <div class="combo-wrap">
+    <table class="combo-table">
+      <thead><tr><th>↓ Final / Initial →</th><th>ㄅ b</th><th>ㄆ p</th><th>ㄇ m</th><th>ㄉ d</th><th>ㄊ t</th><th>ㄋ n</th><th>ㄌ l</th></tr></thead>
+      <tbody>
+        <tr><td class="bopo-big">ㄚ a</td><td>ㄅㄚ bā</td><td>ㄆㄚ pā</td><td>ㄇㄚ mā</td><td>ㄉㄚ dā</td><td>ㄊㄚ tā</td><td>ㄋㄚ nā</td><td>ㄌㄚ lā</td></tr>
+        <tr><td class="bopo-big">ㄛ o</td><td>ㄅㄛ bō</td><td>ㄆㄛ pō</td><td>ㄇㄛ mō</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td class="bopo-big">ㄜ e</td><td>—</td><td>—</td><td>ㄇㄜ me</td><td>ㄉㄜ de</td><td>ㄊㄜ te</td><td>ㄋㄜ ne</td><td>ㄌㄜ le</td></tr>
+        <tr><td class="bopo-big">ㄞ ai</td><td>ㄅㄞ bāi</td><td>ㄆㄞ pāi</td><td>ㄇㄞ māi</td><td>ㄉㄞ dāi</td><td>ㄊㄞ tāi</td><td>ㄋㄞ nāi</td><td>ㄌㄞ lāi</td></tr>
+        <tr><td class="bopo-big">ㄟ ei</td><td>ㄅㄟ bēi</td><td>ㄆㄟ pēi</td><td>ㄇㄟ mēi</td><td>ㄉㄟ dēi</td><td>—</td><td>ㄋㄟ nēi</td><td>ㄌㄟ lēi</td></tr>
+        <tr><td class="bopo-big">ㄢ an</td><td>ㄅㄢ bān</td><td>ㄆㄢ pān</td><td>ㄇㄢ mān</td><td>ㄉㄢ dān</td><td>ㄊㄢ tān</td><td>ㄋㄢ nān</td><td>ㄌㄢ lān</td></tr>
+        <tr><td class="bopo-big">ㄤ ang</td><td>ㄅㄤ bāng</td><td>ㄆㄤ pāng</td><td>ㄇㄤ māng</td><td>ㄉㄤ dāng</td><td>ㄊㄤ tāng</td><td>ㄋㄤ nāng</td><td>ㄌㄤ lāng</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="unit-label">Unit 3 — The Four Tones 四聲</div>
+  <div class="info-box red">⚠ Mandarin is tonal. The same syllable in different tones = completely different words. Tone mark appears to the right of the Bopomofo symbol.</div>
+  <div class="tone-grid">
+    <div class="tone-card"><div class="t-mark">— (1st)</div><div class="t-name">陰平 — High Level</div><div class="t-desc">Hold a high flat pitch. Like a sustained musical note.</div><div class="t-eg">ㄇㄚ → mā · 媽 mother</div></div>
+    <div class="tone-card"><div class="t-mark">ˊ (2nd)</div><div class="t-name">陽平 — Rising</div><div class="t-desc">Rise from mid to high. Like asking "What?" in surprise.</div><div class="t-eg">ㄇㄚˊ → má · 麻 hemp</div></div>
+    <div class="tone-card"><div class="t-mark">ˇ (3rd)</div><div class="t-name">上聲 — Dipping</div><div class="t-desc">Fall then rise. Like a doubtful "hmm…" The trickiest.</div><div class="t-eg">ㄇㄚˇ → mǎ · 馬 horse</div></div>
+    <div class="tone-card"><div class="t-mark">ˋ (4th)</div><div class="t-name">去聲 — Falling</div><div class="t-desc">Sharp drop from high to low. Like barking a command.</div><div class="t-eg">ㄇㄚˋ → mà · 罵 scold</div></div>
+  </div>
+
+  <div class="unit-label">Unit 4 — Module 1 Self-Check</div>
+  <div id="score-m1" class="scoreboard"></div>
+  <div class="quiz-section">
+    <div class="quiz-section-header"><h4>🔊 Pronunciation Check</h4></div>
+    <div class="quiz-q" data-answer="ㄓ">
+      <div class="quiz-q-num">Q1</div>
+      <div class="quiz-q-prompt">What is the Bopomofo symbol for the "zh" sound?</div>
+      <div class="quiz-input-row">
+        <textarea class="quiz-input" placeholder="Type your answer…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <button class="check-btn" onclick="doCheck(this)">Check</button>
+        <button class="reveal-btn" onclick="doReveal(this)">Show answer</button>
+      </div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄓ — zh (tongue curled back)</div>
+    </div>
+    <div class="quiz-q" data-answer="ㄅㄚ">
+      <div class="quiz-q-num">Q2</div>
+      <div class="quiz-q-prompt">Write the Bopomofo for: b + a (1st tone)</div>
+      <div class="quiz-input-row">
+        <textarea class="quiz-input" placeholder="Type your answer…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <button class="check-btn" onclick="doCheck(this)">Check</button>
+        <button class="reveal-btn" onclick="doReveal(this)">Show answer</button>
+      </div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄅㄚ — bā (eight 八)</div>
+    </div>
+    <div class="quiz-q" data-answer="3rd|3|三">
+      <div class="quiz-q-num">Q3</div>
+      <div class="quiz-q-prompt">Which tone symbol is ˇ — and what pitch movement does it make?</div>
+      <div class="quiz-input-row">
+        <textarea class="quiz-input" placeholder="Type the tone name…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <button class="check-btn" onclick="doCheck(this)">Check</button>
+        <button class="reveal-btn" onclick="doReveal(this)">Show answer</button>
+      </div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">3rd tone (上聲) — pitch falls then rises, like a doubtful "hmm…"</div>
+    </div>
+    <div class="quiz-q" data-answer="mother|mama|媽|scold|罵">
+      <div class="quiz-q-num">Q4</div>
+      <div class="quiz-q-prompt">What does ㄇㄚ (mā, 1st tone) mean vs ㄇㄚˋ (mà, 4th tone)?</div>
+      <div class="quiz-input-row">
+        <textarea class="quiz-input" placeholder="Type both meanings…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <button class="check-btn" onclick="doCheck(this)">Check</button>
+        <button class="reveal-btn" onclick="doReveal(this)">Show answer</button>
+      </div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄇㄚ mā = mother (媽) · ㄇㄚˋ mà = to scold (罵)</div>
+    </div>
+    <div class="quiz-controls">
+      <button class="ctrl-btn" onclick="calcScore(this,'score-m1')">📊 Score</button>
+      <button class="ctrl-btn" onclick="revealAll(this)">Show all answers</button>
+      <button class="ctrl-btn" onclick="resetSection(this,'score-m1')">↺ Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 2 POEMS -->
+<section class="module" id="mod2">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 2</div>
+    <h2>Tang Poetry — Reading Aloud 唐詩選讀</h2>
+    <p>Left panel: <strong>Bopomofo only</strong> — your reading practice. Right panel: Chinese + English — comprehension reference. Cover the right while you read aloud.</p>
+  </div>
+
+  <div class="poem-card">
+    <div class="poem-header"><h3>Poem 1 — 靜夜思 Quiet Night Thoughts</h3><span>Li Bai 李白</span></div>
+    <div class="poem-body">
+      <div class="poem-col">
+        <div class="poem-col-label">🔊 Bopomofo Only</div>
+        <div class="poem-bopo">
+          <span class="line">ㄔㄨㄤˊ ㄑㄧㄢˊ ㄇㄧㄥˊ ㄩㄝˋ ㄍㄨㄤ</span>
+          <span class="line">ㄧˊ ㄕˋ ㄉㄧˋ ㄕㄤˋ ㄕㄨㄤ</span>
+          <span class="line">ㄐㄩˇ ㄊㄡˊ ㄨㄤˋ ㄇㄧㄥˊ ㄩㄝˋ</span>
+          <span class="line">ㄉㄧ ㄊㄡˊ ㄙ ㄍㄨˋ ㄒㄧㄤ</span>
+        </div>
+      </div>
+      <div class="poem-col">
+        <div class="poem-col-label">📖 Chinese + English</div>
+        <div class="poem-cn"><span class="line">床前明月光</span><span class="line">疑是地上霜</span><span class="line">舉頭望明月</span><span class="line">低頭思故鄉</span></div>
+        <div class="poem-en">Moonlight falls before my bed —<br>I almost take it for frost on the ground.<br>I raise my head to gaze at the bright moon,<br>then lower it, and think of home.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poem-card">
+    <div class="poem-header"><h3>Poem 2 — 春曉 Spring Dawn</h3><span>Meng Haoran 孟浩然</span></div>
+    <div class="poem-body">
+      <div class="poem-col">
+        <div class="poem-col-label">🔊 Bopomofo Only</div>
+        <div class="poem-bopo">
+          <span class="line">ㄔㄨㄣ ㄇㄧㄢˊ ㄅㄨˋ ㄐㄩㄝˊ ㄒㄧㄠˇ</span>
+          <span class="line">ㄔㄨˋ ㄔㄨˋ ㄨㄣˊ ㄊㄧˊ ㄋㄧㄠˇ</span>
+          <span class="line">ㄧㄝˋ ㄌㄞˊ ㄈㄥ ㄩˇ ㄕㄥ</span>
+          <span class="line">ㄏㄨㄚ ㄌㄨㄛˋ ㄓ ㄉㄨㄛ ㄕㄠˇ</span>
+        </div>
+      </div>
+      <div class="poem-col">
+        <div class="poem-col-label">📖 Chinese + English</div>
+        <div class="poem-cn"><span class="line">春眠不覺曉</span><span class="line">處處聞啼鳥</span><span class="line">夜來風雨聲</span><span class="line">花落知多少</span></div>
+        <div class="poem-en">In spring one sleeps, unaware of dawn —<br>everywhere the sound of singing birds.<br>Last night came the sound of wind and rain;<br>how many petals have fallen, I wonder?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poem-card">
+    <div class="poem-header"><h3>Poem 3 — 登鸛雀樓 Climbing Stork Tower</h3><span>Wang Zhihuan 王之渙</span></div>
+    <div class="poem-body">
+      <div class="poem-col">
+        <div class="poem-col-label">🔊 Bopomofo Only</div>
+        <div class="poem-bopo">
+          <span class="line">ㄅㄞˊ ㄖˋ ㄧ ㄕㄢ ㄐㄧㄣˋ</span>
+          <span class="line">ㄏㄨㄤˊ ㄏㄜˊ ㄖㄨˋ ㄏㄞˇ ㄌㄧㄡˊ</span>
+          <span class="line">ㄩˋ ㄑㄩㄥˊ ㄑㄧㄢ ㄌㄧˇ ㄇㄨˋ</span>
+          <span class="line">ㄍㄥˋ ㄕㄤˋ ㄧ ㄘㄥˊ ㄌㄡˊ</span>
+        </div>
+      </div>
+      <div class="poem-col">
+        <div class="poem-col-label">📖 Chinese + English</div>
+        <div class="poem-cn"><span class="line">白日依山盡</span><span class="line">黃河入海流</span><span class="line">欲窮千里目</span><span class="line">更上一層樓</span></div>
+        <div class="poem-en">The white sun sinks behind the mountains;<br>the Yellow River flows into the sea.<br>To see a thousand miles further,<br>climb one more floor.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poem-card">
+    <div class="poem-header"><h3>Poem 4 — 相思 Longing</h3><span>Wang Wei 王維</span></div>
+    <div class="poem-body">
+      <div class="poem-col">
+        <div class="poem-col-label">🔊 Bopomofo Only</div>
+        <div class="poem-bopo">
+          <span class="line">ㄏㄨㄥˊ ㄉㄡˋ ㄕㄥ ㄋㄢˊ ㄍㄨㄛˊ</span>
+          <span class="line">ㄔㄨㄣ ㄌㄞˊ ㄈㄚ ㄐㄧˇ ㄓ</span>
+          <span class="line">ㄩㄢˋ ㄐㄩㄣ ㄉㄨㄛ ㄘㄞˇ ㄐㄧㄝˊ</span>
+          <span class="line">ㄘˇ ㄨˋ ㄗㄨㄟˋ ㄒㄧㄤ ㄙ</span>
+        </div>
+      </div>
+      <div class="poem-col">
+        <div class="poem-col-label">📖 Chinese + English</div>
+        <div class="poem-cn"><span class="line">紅豆生南國</span><span class="line">春來發幾枝</span><span class="line">願君多採擷</span><span class="line">此物最相思</span></div>
+        <div class="poem-en">Red beans grow in the southern land —<br>how many branches bloom when spring arrives?<br>I hope you gather them well, my friend,<br>for they are the truest token of longing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="poem-card">
+    <div class="poem-header"><h3>Poem 5 — 回鄉偶書 Returning Home</h3><span>He Zhizhang 賀知章</span></div>
+    <div class="poem-body">
+      <div class="poem-col">
+        <div class="poem-col-label">🔊 Bopomofo Only</div>
+        <div class="poem-bopo">
+          <span class="line">ㄕㄠˋ ㄒㄧㄠˇ ㄌㄧˊ ㄐㄧㄚ ㄌㄠˇ ㄉㄚˋ ㄏㄨㄟˊ</span>
+          <span class="line">ㄒㄧㄤ ㄧㄣ ㄨˊ ㄍㄞˇ ㄅㄧㄣˋ ㄇㄠˊ ㄘㄨㄟ</span>
+          <span class="line">ㄦˊ ㄊㄨㄥˊ ㄒㄧㄤ ㄐㄧㄢˋ ㄅㄨˋ ㄒㄧㄤ ㄕˊ</span>
+          <span class="line">ㄒㄧㄠˋ ㄨㄣˋ ㄎㄜˋ ㄘㄨㄥˊ ㄏㄜˊ ㄔㄨˋ ㄌㄞˊ</span>
+        </div>
+      </div>
+      <div class="poem-col">
+        <div class="poem-col-label">📖 Chinese + English</div>
+        <div class="poem-cn"><span class="line">少小離家老大回</span><span class="line">鄉音無改鬢毛催</span><span class="line">兒童相見不相識</span><span class="line">笑問客從何處來</span></div>
+        <div class="poem-en">I left home young and return now old —<br>my accent unchanged, but my hair gone grey.<br>The village children, seeing me, don't know me;<br>they laugh and ask, "Stranger, where do you come from?"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 3 DIALOGUE -->
+<section class="module" id="mod3">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 3</div>
+    <h2>Conversation — Likes &amp; Dislikes 喜歡與不喜歡</h2>
+    <p>Left: Bopomofo only — your speaking practice. Right: Chinese + English — comprehension reference.</p>
+  </div>
+
+  <div class="unit-label">Pattern A — Statements 陳述句</div>
+  <div class="dialogue-grid">
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">🔊 Bopomofo</div>
+      <div class="dlg-line"><div class="dlg-num">1</div><div class="dlg-bopo">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄆㄧㄥˊ ㄍㄨㄛˇ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">2</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄎㄚ ㄈㄟ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">3</div><div class="dlg-bopo">ㄨㄛˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄒㄧㄚˋ ㄩˇ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">4</div><div class="dlg-bopo">ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄩㄣˋ ㄉㄨㄥˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">5</div><div class="dlg-bopo">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄥ ㄧㄣ ㄩㄝˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">6</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄏㄟ ㄇㄠ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">7</div><div class="dlg-bopo">ㄨㄛˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄢˊ ㄉㄜ ㄉㄨㄥ ㄒㄧ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">8</div><div class="dlg-bopo">ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄌㄥˇ ㄊㄧㄢ ㄑㄧˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">9</div><div class="dlg-bopo">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄎㄢˋ ㄉㄧㄢˋ ㄧㄥˇ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">10</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄓㄨˋ ㄗㄞˋ ㄏㄞˇ ㄅㄧㄢ。</div></div>
+    </div>
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">📖 Chinese + English</div>
+      <div class="dlg-line"><div class="dlg-cn">我喜歡吃蘋果。</div><div class="dlg-en">I like eating apples.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">他喜歡喝咖啡。</div><div class="dlg-en">He likes drinking coffee.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">我不喜歡下雨。</div><div class="dlg-en">I don't like rain.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">他不喜歡運動。</div><div class="dlg-en">He doesn't like exercising.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">我喜歡聽音樂。</div><div class="dlg-en">I like listening to music.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">她喜歡黑貓。</div><div class="dlg-en">She likes black cats.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">我不喜歡甜的東西。</div><div class="dlg-en">I don't like sweet things.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">他不喜歡冷天氣。</div><div class="dlg-en">He doesn't like cold weather.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">我喜歡看電影。</div><div class="dlg-en">I like watching movies.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">她喜歡住在海邊。</div><div class="dlg-en">She likes living by the sea.</div></div>
+    </div>
+  </div>
+
+  <div class="unit-label">Pattern B — Questions &amp; Answers 問答句</div>
+  <div class="dialogue-grid">
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">🔊 Bopomofo</div>
+      <div class="dlg-line"><div class="dlg-num">11</div><div class="dlg-bopo">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄕㄡˋ ㄙ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">12</div><div class="dlg-bopo">ㄕˋ，ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄕㄡˋ ㄙ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">13</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄔㄚˊ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">14</div><div class="dlg-bopo">ㄅㄨˋ ㄕˋ，ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄔㄚˊ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">15</div><div class="dlg-bopo">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄥ ㄍㄨˇ ㄉㄧㄢˇ ㄧㄣ ㄩㄝˋ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">16</div><div class="dlg-bopo">ㄅㄨˋ ㄕˋ，ㄨㄛˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄥ ㄍㄨˇ ㄉㄧㄢˇ ㄧㄣ ㄩㄝˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">17</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄌㄚˋ ㄉㄜ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">18</div><div class="dlg-bopo">ㄕˋ，ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄌㄚˋ ㄉㄜ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">19</div><div class="dlg-bopo">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄓㄜˋ ㄍㄜ ㄉㄧˋ ㄈㄤ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">20</div><div class="dlg-bopo">ㄕˋ，ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄓㄜˋ ㄍㄜ ㄉㄧˋ ㄈㄤ。</div></div>
+    </div>
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">📖 Chinese + English</div>
+      <div class="dlg-line"><div class="dlg-cn">你喜不喜歡吃壽司？</div><div class="dlg-en">Do you like eating sushi?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">是，我喜歡吃壽司。</div><div class="dlg-en">Yes, I like eating sushi.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">他喜不喜歡喝茶？</div><div class="dlg-en">Does he like drinking tea?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">不是，他不喜歡喝茶。</div><div class="dlg-en">No, he doesn't like drinking tea.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">你喜不喜歡聽古典音樂？</div><div class="dlg-en">Do you like classical music?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">不是，我不喜歡聽古典音樂。</div><div class="dlg-en">No, I don't like classical music.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">她喜不喜歡吃辣的？</div><div class="dlg-en">Does she like spicy food?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">是，她喜歡吃辣的。</div><div class="dlg-en">Yes, she likes spicy food.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">你喜不喜歡這個地方？</div><div class="dlg-en">Do you like this place?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">是，我喜歡這個地方。</div><div class="dlg-en">Yes, I like this place.</div></div>
+    </div>
+  </div>
+
+  <div class="unit-label">Pattern C — Extended Sentences 延伸句型</div>
+  <div class="dialogue-grid">
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">🔊 Bopomofo</div>
+      <div class="dlg-line"><div class="dlg-num">21</div><div class="dlg-bopo">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄅㄧㄥ ㄋㄞˇ ㄔㄚˊ，ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">22</div><div class="dlg-bopo">ㄋㄧˇ ㄒㄧˇ ㄏㄨㄢ ㄕㄣˊ ㄇㄜ ㄉㄨㄥ ㄒㄧ？</div></div>
+      <div class="dlg-line"><div class="dlg-num">23</div><div class="dlg-bopo">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄒㄧㄚˋ ㄩˇ ㄉㄜ ㄕˊ ㄏㄡˋ ㄗㄞˋ ㄐㄧㄚ ㄓㄞˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">24</div><div class="dlg-bopo">ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄏㄜˋ ㄆㄥˊ ㄧㄡˇ ㄧˋ ㄑㄧˇ ㄔ ㄈㄢˋ。</div></div>
+      <div class="dlg-line"><div class="dlg-num">25</div><div class="dlg-bopo">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄓㄨㄥ ㄨˇ ㄕㄨㄟˋ ㄐㄧㄠˋ？ ㄕˋ，ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ！</div></div>
+    </div>
+    <div class="dialogue-col">
+      <div class="dialogue-col-label">📖 Chinese + English</div>
+      <div class="dlg-line"><div class="dlg-cn">我喜歡喝冰奶茶，他不喜歡。</div><div class="dlg-en">I like bubble milk tea; he doesn't.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">你喜歡什麼東西？</div><div class="dlg-en">What things do you like?</div></div>
+      <div class="dlg-line"><div class="dlg-cn">我喜歡下雨的時候在家宅。</div><div class="dlg-en">I like staying home doing nothing when it rains.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">她喜歡和朋友一起吃飯。</div><div class="dlg-en">She likes eating with friends.</div></div>
+      <div class="dlg-line"><div class="dlg-cn">你喜不喜歡中午睡覺？是，我喜歡！</div><div class="dlg-en">Do you like napping at noon? Yes, I do!</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 4 VOCAB -->
+<section class="module" id="mod4">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 4</div>
+    <h2>Vocabulary &amp; Phrase List 單字片語表</h2>
+    <p>Order: English → Chinese → Bopomofo → Pinyin.</p>
+  </div>
+
+  <div class="unit-label">From the Poems 詩詞用字</div>
+  <div class="vocab-wrap">
+    <table class="vocab-table">
+      <thead><tr><th>English</th><th>Chinese</th><th>Bopomofo</th><th>Pinyin</th></tr></thead>
+      <tbody>
+        <tr><td class="v-en">moon</td><td class="v-cn">月</td><td class="v-bopo">ㄩㄝˋ</td><td class="v-py">yuè</td></tr>
+        <tr><td class="v-en">moonlight</td><td class="v-cn">月光</td><td class="v-bopo">ㄩㄝˋ ㄍㄨㄤ</td><td class="v-py">yuèguāng</td></tr>
+        <tr><td class="v-en">frost</td><td class="v-cn">霜</td><td class="v-bopo">ㄕㄨㄤ</td><td class="v-py">shuāng</td></tr>
+        <tr><td class="v-en">home / hometown</td><td class="v-cn">故鄉</td><td class="v-bopo">ㄍㄨˋ ㄒㄧㄤ</td><td class="v-py">gùxiāng</td></tr>
+        <tr><td class="v-en">spring</td><td class="v-cn">春</td><td class="v-bopo">ㄔㄨㄣ</td><td class="v-py">chūn</td></tr>
+        <tr><td class="v-en">bird</td><td class="v-cn">鳥</td><td class="v-bopo">ㄋㄧㄠˇ</td><td class="v-py">niǎo</td></tr>
+        <tr><td class="v-en">wind</td><td class="v-cn">風</td><td class="v-bopo">ㄈㄥ</td><td class="v-py">fēng</td></tr>
+        <tr><td class="v-en">rain</td><td class="v-cn">雨</td><td class="v-bopo">ㄩˇ</td><td class="v-py">yǔ</td></tr>
+        <tr><td class="v-en">flower</td><td class="v-cn">花</td><td class="v-bopo">ㄏㄨㄚ</td><td class="v-py">huā</td></tr>
+        <tr><td class="v-en">mountain</td><td class="v-cn">山</td><td class="v-bopo">ㄕㄢ</td><td class="v-py">shān</td></tr>
+        <tr><td class="v-en">river / Yellow River</td><td class="v-cn">河 / 黃河</td><td class="v-bopo">ㄏㄜˊ / ㄏㄨㄤˊ ㄏㄜˊ</td><td class="v-py">hé / Huáng Hé</td></tr>
+        <tr><td class="v-en">sea</td><td class="v-cn">海</td><td class="v-bopo">ㄏㄞˇ</td><td class="v-py">hǎi</td></tr>
+        <tr><td class="v-en">red bean</td><td class="v-cn">紅豆</td><td class="v-bopo">ㄏㄨㄥˊ ㄉㄡˋ</td><td class="v-py">hóngdòu</td></tr>
+        <tr><td class="v-en">longing / missing someone</td><td class="v-cn">相思</td><td class="v-bopo">ㄒㄧㄤ ㄙ</td><td class="v-py">xiāngsī</td></tr>
+        <tr><td class="v-en">child / children</td><td class="v-cn">兒童</td><td class="v-bopo">ㄦˊ ㄊㄨㄥˊ</td><td class="v-py">értóng</td></tr>
+        <tr><td class="v-en">stranger / guest</td><td class="v-cn">客</td><td class="v-bopo">ㄎㄜˋ</td><td class="v-py">kè</td></tr>
+        <tr><td class="v-en">climb one more floor (idiom)</td><td class="v-cn">更上一層樓</td><td class="v-bopo">ㄍㄥˋ ㄕㄤˋ ㄧ ㄘㄥˊ ㄌㄡˊ</td><td class="v-py">gèng shàng yī céng lóu</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="unit-label">From the Dialogue 會話用字</div>
+  <div class="vocab-wrap">
+    <table class="vocab-table">
+      <thead><tr><th>English</th><th>Chinese</th><th>Bopomofo</th><th>Pinyin</th></tr></thead>
+      <tbody>
+        <tr><td class="v-en">to like</td><td class="v-cn">喜歡</td><td class="v-bopo">ㄒㄧˇ ㄏㄨㄢ</td><td class="v-py">xǐhuān</td></tr>
+        <tr><td class="v-en">to not like</td><td class="v-cn">不喜歡</td><td class="v-bopo">ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ</td><td class="v-py">bù xǐhuān</td></tr>
+        <tr><td class="v-en">I / me</td><td class="v-cn">我</td><td class="v-bopo">ㄨㄛˇ</td><td class="v-py">wǒ</td></tr>
+        <tr><td class="v-en">you</td><td class="v-cn">你</td><td class="v-bopo">ㄋㄧˇ</td><td class="v-py">nǐ</td></tr>
+        <tr><td class="v-en">he / she</td><td class="v-cn">他 / 她</td><td class="v-bopo">ㄊㄚ</td><td class="v-py">tā</td></tr>
+        <tr><td class="v-en">yes</td><td class="v-cn">是</td><td class="v-bopo">ㄕˋ</td><td class="v-py">shì</td></tr>
+        <tr><td class="v-en">no / it is not</td><td class="v-cn">不是</td><td class="v-bopo">ㄅㄨˋ ㄕˋ</td><td class="v-py">bù shì</td></tr>
+        <tr><td class="v-en">to eat</td><td class="v-cn">吃</td><td class="v-bopo">ㄔ</td><td class="v-py">chī</td></tr>
+        <tr><td class="v-en">to drink</td><td class="v-cn">喝</td><td class="v-bopo">ㄏㄜ</td><td class="v-py">hē</td></tr>
+        <tr><td class="v-en">to listen</td><td class="v-cn">聽</td><td class="v-bopo">ㄊㄧㄥ</td><td class="v-py">tīng</td></tr>
+        <tr><td class="v-en">to watch</td><td class="v-cn">看</td><td class="v-bopo">ㄎㄢˋ</td><td class="v-py">kàn</td></tr>
+        <tr><td class="v-en">apple</td><td class="v-cn">蘋果</td><td class="v-bopo">ㄆㄧㄥˊ ㄍㄨㄛˇ</td><td class="v-py">píngguǒ</td></tr>
+        <tr><td class="v-en">coffee</td><td class="v-cn">咖啡</td><td class="v-bopo">ㄎㄚ ㄈㄟ</td><td class="v-py">kāfēi</td></tr>
+        <tr><td class="v-en">tea</td><td class="v-cn">茶</td><td class="v-bopo">ㄔㄚˊ</td><td class="v-py">chá</td></tr>
+        <tr><td class="v-en">bubble milk tea</td><td class="v-cn">冰奶茶</td><td class="v-bopo">ㄅㄧㄥ ㄋㄞˇ ㄔㄚˊ</td><td class="v-py">bīng nǎichá</td></tr>
+        <tr><td class="v-en">music</td><td class="v-cn">音樂</td><td class="v-bopo">ㄧㄣ ㄩㄝˋ</td><td class="v-py">yīnyuè</td></tr>
+        <tr><td class="v-en">movie / film</td><td class="v-cn">電影</td><td class="v-bopo">ㄉㄧㄢˋ ㄧㄥˇ</td><td class="v-py">diànyǐng</td></tr>
+        <tr><td class="v-en">exercise / sport</td><td class="v-cn">運動</td><td class="v-bopo">ㄩㄣˋ ㄉㄨㄥˋ</td><td class="v-py">yùndòng</td></tr>
+        <tr><td class="v-en">cat</td><td class="v-cn">貓</td><td class="v-bopo">ㄇㄠ</td><td class="v-py">māo</td></tr>
+        <tr><td class="v-en">spicy</td><td class="v-cn">辣</td><td class="v-bopo">ㄌㄚˋ</td><td class="v-py">là</td></tr>
+        <tr><td class="v-en">sweet</td><td class="v-cn">甜</td><td class="v-bopo">ㄊㄧㄢˊ</td><td class="v-py">tián</td></tr>
+        <tr><td class="v-en">weather</td><td class="v-cn">天氣</td><td class="v-bopo">ㄊㄧㄢ ㄑㄧˋ</td><td class="v-py">tiānqì</td></tr>
+        <tr><td class="v-en">friend</td><td class="v-cn">朋友</td><td class="v-bopo">ㄆㄥˊ ㄧㄡˇ</td><td class="v-py">péngyǒu</td></tr>
+        <tr><td class="v-en">place / location</td><td class="v-cn">地方</td><td class="v-bopo">ㄉㄧˋ ㄈㄤ</td><td class="v-py">dìfāng</td></tr>
+        <tr><td class="v-en">together</td><td class="v-cn">一起</td><td class="v-bopo">ㄧˋ ㄑㄧˇ</td><td class="v-py">yīqǐ</td></tr>
+        <tr><td class="v-en">what / which thing</td><td class="v-cn">什麼</td><td class="v-bopo">ㄕㄣˊ ㄇㄜ</td><td class="v-py">shénme</td></tr>
+        <tr><td class="v-en">to sleep / nap</td><td class="v-cn">睡覺</td><td class="v-bopo">ㄕㄨㄟˋ ㄐㄧㄠˋ</td><td class="v-py">shuìjiào</td></tr>
+        <tr><td class="v-en">noon</td><td class="v-cn">中午</td><td class="v-bopo">ㄓㄨㄥ ㄨˇ</td><td class="v-py">zhōngwǔ</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- MODULE 5 QUIZ -->
+<section class="module" id="mod5">
+  <div class="module-header">
+    <div class="module-eyebrow">Module 5</div>
+    <h2>Comprehensive Quiz 綜合測驗</h2>
+    <p>打完注音後點 <strong>Check</strong> 按鈕。<strong>不要按空白鍵選字</strong>，直接連續輸入所有注音符號再按 Check。Score 顯示在按 📊 Score 之後。</p>
+  </div>
+
+  <!-- Quiz A: Poems -->
+  <div class="info-box blue">
+  <strong>⌨️ 注音輸入提醒 IME Tip:</strong> 切換到注音輸入法後，<strong>直接連續打注音符號，不要按空白鍵選字</strong>。例如打 ㄔㄨㄤˊ，就按 <code>c</code><code>j</code><code>i</code><code>6</code>（聲調），然後繼續打下一個音節。打完整句後再點 Check。
+  <br>Tip: Type all Bopomofo symbols continuously — do <strong>not</strong> press Space to convert. Click Check when the full line is typed.
+</div>
+<div class="unit-label">Quiz A — Tang Poetry Dictation 唐詩注音聽寫</div>
+  <div class="info-box red">Teacher reads the Chinese line aloud → write the complete Bopomofo from memory.</div>
+  <div id="score-a" class="scoreboard"></div>
+  <div class="quiz-section">
+    <div class="quiz-section-header"><h4>📝 Write the Bopomofo for each poem line</h4><p style="font-size:12px;color:var(--blue);margin-top:4px">💡 Type in the box · Press Enter to check · Use your system Bopomofo keyboard</p></div>
+
+    <div class="quiz-q" data-answer="ㄔㄨㄤˊ ㄑㄧㄢˊ ㄇㄧㄥˊ ㄩㄝˋ ㄍㄨㄤ">
+      <div class="quiz-q-num">A1 — 床前明月光 (靜夜思 line 1)</div>
+      <div class="quiz-q-prompt">chuáng qián míng yuè guāng</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄔㄨㄤˊ ㄑㄧㄢˊ ㄇㄧㄥˊ ㄩㄝˋ ㄍㄨㄤ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄉㄧ ㄊㄡˊ ㄙ ㄍㄨˋ ㄒㄧㄤ">
+      <div class="quiz-q-num">A2 — 低頭思故鄉 (靜夜思 line 4)</div>
+      <div class="quiz-q-prompt">dī tóu sī gù xiāng</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄉㄧ ㄊㄡˊ ㄙ ㄍㄨˋ ㄒㄧㄤ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄔㄨㄣ ㄇㄧㄢˊ ㄅㄨˋ ㄐㄩㄝˊ ㄒㄧㄠˇ">
+      <div class="quiz-q-num">A3 — 春眠不覺曉 (春曉 line 1)</div>
+      <div class="quiz-q-prompt">chūn mián bù jué xiǎo</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄔㄨㄣ ㄇㄧㄢˊ ㄅㄨˋ ㄐㄩㄝˊ ㄒㄧㄠˇ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄏㄨㄚ ㄌㄨㄛˋ ㄓ ㄉㄨㄛ ㄕㄠˇ">
+      <div class="quiz-q-num">A4 — 花落知多少 (春曉 line 4)</div>
+      <div class="quiz-q-prompt">huā luò zhī duō shǎo</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄏㄨㄚ ㄌㄨㄛˋ ㄓ ㄉㄨㄛ ㄕㄠˇ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄏㄨㄤˊ ㄏㄜˊ ㄖㄨˋ ㄏㄞˇ ㄌㄧㄡˊ">
+      <div class="quiz-q-num">A5 — 黃河入海流 (登鸛雀樓 line 2)</div>
+      <div class="quiz-q-prompt">huáng hé rù hǎi liú</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄏㄨㄤˊ ㄏㄜˊ ㄖㄨˋ ㄏㄞˇ ㄌㄧㄡˊ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄍㄥˋ ㄕㄤˋ ㄧ ㄘㄥˊ ㄌㄡˊ">
+      <div class="quiz-q-num">A6 — 更上一層樓 (登鸛雀樓 line 4)</div>
+      <div class="quiz-q-prompt">gèng shàng yī céng lóu</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄍㄥˋ ㄕㄤˋ ㄧ ㄘㄥˊ ㄌㄡˊ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄘˇ ㄨˋ ㄗㄨㄟˋ ㄒㄧㄤ ㄙ">
+      <div class="quiz-q-num">A7 — 此物最相思 (相思 line 4)</div>
+      <div class="quiz-q-prompt">cǐ wù zuì xiāng sī</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄘˇ ㄨˋ ㄗㄨㄟˋ ㄒㄧㄤ ㄙ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄕㄠˋ ㄒㄧㄠˇ ㄌㄧˊ ㄐㄧㄚ ㄌㄠˇ ㄉㄚˋ ㄏㄨㄟˊ">
+      <div class="quiz-q-num">A8 — 少小離家老大回 (回鄉偶書 line 1)</div>
+      <div class="quiz-q-prompt">shào xiǎo lí jiā lǎo dà huí</div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄕㄠˋ ㄒㄧㄠˇ ㄌㄧˊ ㄐㄧㄚ ㄌㄠˇ ㄉㄚˋ ㄏㄨㄟˊ</div>
+    </div>
+
+    <div class="quiz-controls">
+      <button class="ctrl-btn" onclick="calcScore(this,'score-a')">📊 Score</button>
+      <button class="ctrl-btn" onclick="revealAll(this)">Show all answers</button>
+      <button class="ctrl-btn" onclick="resetSection(this,'score-a')">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Quiz B: Dialogue -->
+  <div class="unit-label">Quiz B — Dialogue Dictation 會話注音聽寫</div>
+  <div class="info-box red">Teacher reads the Chinese sentence → write complete Bopomofo from memory.</div>
+  <div id="score-b" class="scoreboard"></div>
+  <div class="quiz-section">
+    <div class="quiz-section-header"><h4>📝 Write the Bopomofo for each sentence</h4></div>
+
+    <div class="quiz-q" data-answer="ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄆㄧㄥˊ ㄍㄨㄛˇ">
+      <div class="quiz-q-num">B1</div><div class="quiz-q-prompt">我喜歡吃蘋果。 <em style="color:var(--ink3);font-size:12px">wǒ xǐhuān chī píngguǒ</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄆㄧㄥˊ ㄍㄨㄛˇ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄩㄣˋ ㄉㄨㄥˋ">
+      <div class="quiz-q-num">B2</div><div class="quiz-q-prompt">他不喜歡運動。 <em style="color:var(--ink3);font-size:12px">tā bù xǐhuān yùndòng</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄩㄣˋ ㄉㄨㄥˋ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄕㄡˋ ㄙ">
+      <div class="quiz-q-num">B3</div><div class="quiz-q-prompt">你喜不喜歡吃壽司？ <em style="color:var(--ink3);font-size:12px">nǐ xǐ bù xǐhuān chī shòusī</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄔ ㄕㄡˋ ㄙ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄅㄨˋ ㄕˋ ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄔㄚˊ">
+      <div class="quiz-q-num">B4</div><div class="quiz-q-prompt">不是，他不喜歡喝茶。 <em style="color:var(--ink3);font-size:12px">bù shì, tā bù xǐhuān hē chá</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄅㄨˋ ㄕˋ ㄊㄚ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄏㄜ ㄔㄚˊ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄥ ㄧㄣ ㄩㄝˋ">
+      <div class="quiz-q-num">B5</div><div class="quiz-q-prompt">我喜歡聽音樂。 <em style="color:var(--ink3);font-size:12px">wǒ xǐhuān tīng yīnyuè</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄨㄛˇ ㄒㄧˇ ㄏㄨㄢ ㄊㄧㄥ ㄧㄣ ㄩㄝˋ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄏㄜˋ ㄆㄥˊ ㄧㄡˇ ㄧˋ ㄑㄧˇ ㄔ ㄈㄢˋ">
+      <div class="quiz-q-num">B6</div><div class="quiz-q-prompt">她喜歡和朋友一起吃飯。 <em style="color:var(--ink3);font-size:12px">tā xǐhuān hé péngyǒu yīqǐ chī fàn</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄊㄚ ㄒㄧˇ ㄏㄨㄢ ㄏㄜˋ ㄆㄥˊ ㄧㄡˇ ㄧˋ ㄑㄧˇ ㄔ ㄈㄢˋ</div>
+    </div>
+
+    <div class="quiz-q" data-answer="ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄓㄨㄥ ㄨˇ ㄕㄨㄟˋ ㄐㄧㄠˋ">
+      <div class="quiz-q-num">B7</div><div class="quiz-q-prompt">你喜不喜歡中午睡覺？ <em style="color:var(--ink3);font-size:12px">nǐ xǐ bù xǐhuān zhōngwǔ shuìjiào</em></div>
+      <div class="quiz-input-row"><textarea class="quiz-input" placeholder="Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div>
+      <div class="quiz-feedback"></div>
+      <div class="quiz-answer-reveal">ㄋㄧˇ ㄒㄧˇ ㄅㄨˋ ㄒㄧˇ ㄏㄨㄢ ㄓㄨㄥ ㄨˇ ㄕㄨㄟˋ ㄐㄧㄠˋ</div>
+    </div>
+
+    <div class="quiz-controls">
+      <button class="ctrl-btn" onclick="calcScore(this,'score-b')">📊 Score</button>
+      <button class="ctrl-btn" onclick="revealAll(this)">Show all answers</button>
+      <button class="ctrl-btn" onclick="resetSection(this,'score-b')">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Quiz C: Vocab -->
+  <div class="unit-label">Quiz C — Vocabulary: English → Chinese + Bopomofo</div>
+  <div class="info-box red">Read the English → write the Chinese character(s) AND Bopomofo.</div>
+  <div id="score-c" class="scoreboard"></div>
+  <div class="quiz-section">
+    <div class="quiz-section-header"><h4>📝 English → Chinese + Bopomofo</h4></div>
+
+    <div class="quiz-q" data-answer="月 ㄩㄝˋ"><div class="quiz-q-num">C1</div><div class="quiz-q-prompt">moon</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">月 — ㄩㄝˋ (yuè)</div></div>
+
+    <div class="quiz-q" data-answer="喜歡 ㄒㄧˇ ㄏㄨㄢ"><div class="quiz-q-num">C2</div><div class="quiz-q-prompt">to like</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">喜歡 — ㄒㄧˇ ㄏㄨㄢ (xǐhuān)</div></div>
+
+    <div class="quiz-q" data-answer="朋友 ㄆㄥˊ ㄧㄡˇ"><div class="quiz-q-num">C3</div><div class="quiz-q-prompt">friend</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">朋友 — ㄆㄥˊ ㄧㄡˇ (péngyǒu)</div></div>
+
+    <div class="quiz-q" data-answer="雨 ㄩˇ"><div class="quiz-q-num">C4</div><div class="quiz-q-prompt">rain</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">雨 — ㄩˇ (yǔ)</div></div>
+
+    <div class="quiz-q" data-answer="電影 ㄉㄧㄢˋ ㄧㄥˇ"><div class="quiz-q-num">C5</div><div class="quiz-q-prompt">movie / film</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">電影 — ㄉㄧㄢˋ ㄧㄥˇ (diànyǐng)</div></div>
+
+    <div class="quiz-q" data-answer="故鄉 ㄍㄨˋ ㄒㄧㄤ"><div class="quiz-q-num">C6</div><div class="quiz-q-prompt">home / hometown</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">故鄉 — ㄍㄨˋ ㄒㄧㄤ (gùxiāng)</div></div>
+
+    <div class="quiz-q" data-answer="相思 ㄒㄧㄤ ㄙ"><div class="quiz-q-num">C7</div><div class="quiz-q-prompt">longing / missing someone</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">相思 — ㄒㄧㄤ ㄙ (xiāngsī)</div></div>
+
+    <div class="quiz-q" data-answer="音樂 ㄧㄣ ㄩㄝˋ"><div class="quiz-q-num">C8</div><div class="quiz-q-prompt">music</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">音樂 — ㄧㄣ ㄩㄝˋ (yīnyuè)</div></div>
+
+    <div class="quiz-q" data-answer="天氣 ㄊㄧㄢ ㄑㄧˋ"><div class="quiz-q-num">C9</div><div class="quiz-q-prompt">weather</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">天氣 — ㄊㄧㄢ ㄑㄧˋ (tiānqì)</div></div>
+
+    <div class="quiz-q" data-answer="一起 ㄧˋ ㄑㄧˇ"><div class="quiz-q-num">C10</div><div class="quiz-q-prompt">together</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">一起 — ㄧˋ ㄑㄧˇ (yīqǐ)</div></div>
+
+    <div class="quiz-q" data-answer="花 ㄏㄨㄚ"><div class="quiz-q-num">C11</div><div class="quiz-q-prompt">flower</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">花 — ㄏㄨㄚ (huā)</div></div>
+
+    <div class="quiz-q" data-answer="山 ㄕㄢ"><div class="quiz-q-num">C12</div><div class="quiz-q-prompt">mountain</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">山 — ㄕㄢ (shān)</div></div>
+
+    <div class="quiz-q" data-answer="睡覺 ㄕㄨㄟˋ ㄐㄧㄠˋ"><div class="quiz-q-num">C13</div><div class="quiz-q-prompt">to sleep / nap</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">睡覺 — ㄕㄨㄟˋ ㄐㄧㄠˋ (shuìjiào)</div></div>
+
+    <div class="quiz-q" data-answer="運動 ㄩㄣˋ ㄉㄨㄥˋ"><div class="quiz-q-num">C14</div><div class="quiz-q-prompt">exercise / sport</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">運動 — ㄩㄣˋ ㄉㄨㄥˋ (yùndòng)</div></div>
+
+    <div class="quiz-q" data-answer="什麼 ㄕㄣˊ ㄇㄜ"><div class="quiz-q-num">C15</div><div class="quiz-q-prompt">what / which thing</div><div class="quiz-input-row"><textarea class="quiz-input" placeholder="漢字 + Bopomofo…" rows="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><button class="check-btn" onclick="doCheck(this)">Check</button><button class="reveal-btn" onclick="doReveal(this)">Show answer</button></div><div class="quiz-feedback"></div><div class="quiz-answer-reveal">什麼 — ㄕㄣˊ ㄇㄜ (shénme)</div></div>
+
+    <div class="quiz-controls">
+      <button class="ctrl-btn" onclick="calcScore(this,'score-c')">📊 Score</button>
+      <button class="ctrl-btn" onclick="revealAll(this)">Show all answers</button>
+      <button class="ctrl-btn" onclick="resetSection(this,'score-c')">↺ Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOMEWORK -->
+<section class="module" id="homework">
+  <div class="module-header">
+    <div class="module-eyebrow">Take-Home Assignment</div>
+    <h2>回家任務 Homework</h2>
+  </div>
+  <div class="hw-box">
+    <h3>📚 Three Tasks Before Next Class</h3>
+    <ol>
+      <li><strong>Memorise all Bopomofo symbols ㄅㄆㄇㄈ.</strong> Cover the page and write every symbol from memory. Be able to recite the full alphabet in under two minutes without looking.</li>
+      <li><strong>Memorise all vocabulary — write and read aloud.</strong> For each word: (1) see the English, write the Chinese character from memory, (2) write the Bopomofo, (3) say it aloud with the correct tone. Do not move on until all three are correct without peeking.</li>
+      <li><strong>Memorise all sentences and vocabulary from this lesson.</strong> Cover the Bopomofo and recite every poem line and every dialogue sentence from memory. Aim for fluency — meaning flows without looking at the page.</li>
+    </ol>
+  </div>
+</section>
+
+</div>
+<footer>Made with care · 學語言是一個旅程，不是目的地 · Language learning is a journey, not a destination.</footer>
+
+<script>
+function norm(s){
+  return (s||'').trim()
+    .replace(/[。，？！、,\.?!\s]/g,' ')
+    .replace(/\s+/g,' ')
+    .trim()
+    .toLowerCase();
+}
+
+// ── THE FIXED check function ──
+function doCheck(btn){
+  const q = btn.closest('.quiz-q');
+  const input = q.querySelector('.quiz-input');
+  const answer = (q.dataset.answer || '').trim();
+  const fb = q.querySelector('.quiz-feedback');
+  const val = norm(input.value);
+
+  if(!val){ fb.textContent='Please write something first.'; fb.className='quiz-feedback'; return; }
+  if(!answer){ fb.textContent='No answer key found.'; return; }
+
+  // Support multiple valid answers separated by |
+  const accepted = answer.split('|').map(a => norm(a));
+  const isOk = accepted.some(acc => {
+    const tokens = acc.split(' ').filter(Boolean);
+    return tokens.length > 0 && tokens.every(t => val.includes(t));
+  });
+
+  if(isOk){
+    input.className='quiz-input correct';
+    fb.textContent='✓ Correct!';
+    fb.className='quiz-feedback ok';
+  } else {
+    input.className='quiz-input wrong';
+    fb.textContent='✗ Not quite — check your symbols and tone marks.';
+    fb.className='quiz-feedback bad';
+  }
+}
+
+function doReveal(btn){
+  const q = btn.closest('.quiz-q');
+  const rev = q.querySelector('.quiz-answer-reveal');
+  const showing = rev.classList.toggle('show');
+  btn.textContent = showing ? 'Hide' : 'Show answer';
+  const input = q.querySelector('.quiz-input');
+  if(!input.classList.contains('correct')){
+    input.className='quiz-input skipped';
+    q.querySelector('.quiz-feedback').textContent='';
+  }
+}
+
+function revealAll(btn){
+  const section = btn.closest('.quiz-section');
+  section.querySelectorAll('.quiz-q').forEach(q => {
+    q.querySelector('.quiz-answer-reveal').classList.add('show');
+    const inp = q.querySelector('.quiz-input');
+    if(!inp.classList.contains('correct')) inp.className='quiz-input skipped';
+    q.querySelector('.reveal-btn').textContent='Hide';
+  });
+  btn.textContent='All revealed ✓';
+}
+
+function calcScore(btn, scoreId){
+  const section = btn.closest('.quiz-section');
+  const qs = section.querySelectorAll('.quiz-q');
+  let correct=0, wrong=0, skipped=0;
+  qs.forEach(q => {
+    const inp = q.querySelector('.quiz-input');
+    if(inp.classList.contains('correct')) correct++;
+    else if(inp.classList.contains('wrong')) wrong++;
+    else skipped++;
+  });
+  const total = qs.length;
+  const pct = Math.round((correct/total)*100);
+  const box = document.getElementById(scoreId);
+  const ringColor = pct>=80?'#2d6a4f':pct>=50?'#9a6f00':'#c0392b';
+  const circ = 2*Math.PI*34;
+  const offset = circ-(pct/100)*circ;
+  const msg = pct===100?'🎉 Perfect! Incredible.':pct>=80?'🌟 Excellent — almost there!':pct>=60?'👍 Good effort — review mistakes.':pct>=40?'📖 Keep going — you\'re building!':'💪 Don\'t give up — your brain is stretching!';
+
+  box.innerHTML=`<div class="score-ring-wrap">
+    <svg class="score-ring" viewBox="0 0 80 80" width="80" height="80">
+      <circle class="bg" cx="40" cy="40" r="34"/>
+      <circle class="fg" cx="40" cy="40" r="34" stroke="${ringColor}" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/>
+    </svg>
+    <div class="score-center">${pct}%<small>score</small></div>
+  </div>
+  <div class="score-stats">
+    <h3>Quiz Results — ${correct}/${total} correct</h3>
+    <div class="score-bar-row"><span class="score-bar-label">✓ Correct</span><div class="score-bar-track"><div class="score-bar-fill c" style="width:${(correct/total)*100}%"></div></div><span class="score-bar-num">${correct}</span></div>
+    <div class="score-bar-row"><span class="score-bar-label">✗ Wrong</span><div class="score-bar-track"><div class="score-bar-fill w" style="width:${(wrong/total)*100}%"></div></div><span class="score-bar-num">${wrong}</span></div>
+    <div class="score-bar-row"><span class="score-bar-label">— Skipped</span><div class="score-bar-track"><div class="score-bar-fill s" style="width:${(skipped/total)*100}%"></div></div><span class="score-bar-num">${skipped}</span></div>
+    <div class="score-msg">${msg}</div>
+  </div>`;
+  box.classList.add('visible');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function resetSection(btn, scoreId){
+  const section = btn.closest('.quiz-section');
+  section.querySelectorAll('.quiz-q').forEach(q => {
+    q.querySelector('.quiz-input').value='';
+    q.querySelector('.quiz-input').className='quiz-input';
+    q.querySelector('.quiz-feedback').textContent='';
+    q.querySelector('.quiz-feedback').className='quiz-feedback';
+    q.querySelector('.quiz-answer-reveal').classList.remove('show');
+    q.querySelector('.reveal-btn').textContent='Show answer';
+  });
+  section.querySelector('[onclick*="revealAll"]').textContent='Show all answers';
+  const box=document.getElementById(scoreId);
+  box.classList.remove('visible');
+  box.innerHTML='';
+}
+
+// No Enter handler — avoids IME composition conflicts. Use Check button.
+
+
+// ── Bopomofo On-Screen Keyboard ──
+let kbdTarget = null;
+let kbdVisible = true;
+
+function toggleKbd(){
+  kbdVisible = !kbdVisible;
+  const body = document.getElementById('kbd-body');
+  const icon = document.getElementById('kbd-toggle-icon');
+  if(kbdVisible){
+    body.classList.remove('collapsed');
+    icon.textContent = '▲';
+  } else {
+    body.classList.add('collapsed');
+    icon.textContent = '▼ 點此展開';
+  }
+}
+
+// Auto-expand keyboard when a quiz input is focused
+document.addEventListener('focusin', e => {
+  if(e.target.classList.contains('quiz-input') && !kbdVisible){
+    toggleKbd();
+  }
+}); // currently focused textarea
+
+// Track which textarea is focused
+document.addEventListener('focusin', e => {
+  if(e.target.classList.contains('quiz-input')){
+    kbdTarget = e.target;
+    const hint = document.getElementById('kbd-hint');
+    if(hint){
+      const qNum = e.target.closest('.quiz-q')?.querySelector('.quiz-q-num')?.textContent || '';
+      hint.textContent = qNum ? '輸入中: ' + qNum : '已選取答題欄';
+      hint.style.background = 'var(--green-bg)';
+      hint.style.color = 'var(--green)';
+    }
+  }
+});
+
+document.addEventListener('focusout', e => {
+  if(e.target.classList.contains('quiz-input')){
+    // small delay so click on keyboard key doesn't lose target
+    setTimeout(() => {
+      const hint = document.getElementById('kbd-hint');
+      if(hint && kbdTarget === e.target){
+        // only reset if nothing else focused
+        if(!document.activeElement?.classList.contains('quiz-input')){
+          hint.textContent = '點答題欄後再點注音符號';
+          hint.style.background = '';
+          hint.style.color = '';
+        }
+      }
+    }, 200);
+  }
+});
+
+function kbdType(char){
+  // If no target, try to find the most recently visible focused one
+  if(!kbdTarget){
+    const all = document.querySelectorAll('.quiz-input');
+    if(all.length) kbdTarget = all[0];
+    else return;
+  }
+  // Insert at cursor position
+  const ta = kbdTarget;
+  const start = ta.selectionStart ?? ta.value.length;
+  const end = ta.selectionEnd ?? ta.value.length;
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(end);
+  ta.value = before + char + after;
+  // Move cursor after inserted char
+  const newPos = start + char.length;
+  ta.setSelectionRange(newPos, newPos);
+  ta.focus();
+  // Update hint
+  const hint = document.getElementById('kbd-hint');
+  if(hint) hint.textContent = '輸入中… 打完再按 Check';
+}
+
+function kbdDel(){
+  if(!kbdTarget) return;
+  const ta = kbdTarget;
+  const start = ta.selectionStart ?? ta.value.length;
+  const end = ta.selectionEnd ?? ta.value.length;
+  if(start !== end){
+    // delete selection
+    ta.value = ta.value.substring(0, start) + ta.value.substring(end);
+    ta.setSelectionRange(start, start);
+  } else if(start > 0){
+    // delete one char before cursor
+    // handle surrogate pairs for CJK
+    const str = ta.value;
+    let delLen = 1;
+    if(start >= 2){
+      const code = str.codePointAt(start - 2);
+      if(code > 0xFFFF) delLen = 2;
+    }
+    ta.value = str.substring(0, start - delLen) + str.substring(start);
+    ta.setSelectionRange(start - delLen, start - delLen);
+  }
+  ta.focus();
+}
+
+function kbdClear(){
+  if(!kbdTarget) return;
+  kbdTarget.value = '';
+  kbdTarget.className = 'quiz-input';
+  kbdTarget.closest('.quiz-q').querySelector('.quiz-feedback').textContent = '';
+  kbdTarget.closest('.quiz-q').querySelector('.quiz-feedback').className = 'quiz-feedback';
+  kbdTarget.focus();
+}
+
+// Nav scroll highlight
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
